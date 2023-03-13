@@ -10,6 +10,11 @@ public class PlayerAction : MonoBehaviour
     public float boostSpeed;
     private float nowSpeed;
     public float rotateSpeed;
+    [Space(20)]
+
+    public float MaxShotDelay;
+    private float curShotDelay;
+    [Space(20)]
 
     public float zeroback;
     float tempSpeed;
@@ -105,16 +110,19 @@ public class PlayerAction : MonoBehaviour
     {
         // 다음속도
         float tempSpeed = onBoost ? boostSpeed : normalSpeed;
-        // 전 속도
-        float backspeed = onBoost ? normalSpeed : boostSpeed;
 
         // 제로백 수치 될때 까지 증가
         if (t >= zeroback) t = zeroback;
         t += Time.deltaTime;
         // 가속
-        nowSpeed = Mathf.Lerp(backspeed, tempSpeed, Mathf.InverseLerp(0, zeroback, t));
+        nowSpeed = Mathf.Lerp(nowSpeed, tempSpeed, Mathf.InverseLerp(0, zeroback, t));
 
-        Debug.Log("now speed : " + nowSpeed +", " + tempSpeed + ", " + "zeroback now : " + Mathf.InverseLerp(0, zeroback, t));
+        //Debug.Log("now speed : " + nowSpeed +", " + tempSpeed + ", " + "zeroback now : " + Mathf.InverseLerp(0, zeroback, t));
+    }
+
+    public void Reload()
+    {
+        curShotDelay += Time.deltaTime;
     }
 
     public void ShiftInputs()
@@ -134,6 +142,10 @@ public class PlayerAction : MonoBehaviour
 
     public void Shot(bool onShot)
     {
+        if (curShotDelay < MaxShotDelay) return;
+        curShotDelay = 0;
+
         Debug.Log("shots : " + onShot);
+        if(onShot) GameManager.instance.pool.PlayerBulletsGet(0); 
     }
 }

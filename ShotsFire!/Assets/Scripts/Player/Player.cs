@@ -22,13 +22,19 @@ public class Player : MonoBehaviour
         playerInput.UpShift += ShiftUp;
     }
 
+    private void Update()
+    {
+        // 무기 관련
+        playerAction.Reload();
+        ShotsFire();
+    }
+
     private void FixedUpdate()
     {
         PlayerUpdate();
 
         // bool 파라메터
         SpeedBoost();
-        ShotsFire();
     }
 
     // W, A, S, D값 호출           - 플레이어, 플레이어 그림자
