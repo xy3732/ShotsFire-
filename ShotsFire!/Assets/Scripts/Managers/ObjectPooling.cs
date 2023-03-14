@@ -2,10 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// 쓰레드
-using System.Threading;
-using System;
-using System.Threading.Tasks;
 
 public class ObjectPooling : MonoBehaviour
 {
@@ -77,8 +73,11 @@ public class ObjectPooling : MonoBehaviour
             if(!item.activeSelf)
             {
                 select = item;
+                select.transform.position = player.transform.position;
+                select.transform.rotation = player.transform.rotation;
                 // 활성화
                 select.SetActive(true);
+
                 break;
             }
         }
@@ -87,6 +86,7 @@ public class ObjectPooling : MonoBehaviour
         {
             // 오브젝트 생성
             select = Instantiate(playerBulletPrefabs[index], player.transform.position, player.transform.rotation);
+
             // 리스트에 추가
             playerBulletPools[index].Add(select);
         }
