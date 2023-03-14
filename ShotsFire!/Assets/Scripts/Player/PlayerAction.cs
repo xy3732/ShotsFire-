@@ -5,21 +5,27 @@ using UnityEngine;
 
 public class PlayerAction : MonoBehaviour
 {
-    [Header("플레이어 세팅")]
+    [Header("Player settings")]
     public float normalSpeed;
     public float boostSpeed;
     private float nowSpeed;
     public float rotateSpeed;
-    [Space(20)]
+    public float zeroback;
+    [Space(10)]
+    [SerializeField]
+    private int maxHp;
+    private int nowHp;
 
+    [Header("Bullet Settings")]
     public float MaxShotDelay;
     private float curShotDelay;
-    [Space(20)]
 
-    public float zeroback;
-    float tempSpeed;
+    [Header("Missile Settings")]
+    public float MaxMissDelay;
+    private float curMissDelay;
 
-    [Header("플레이어 그림자 세팅")]
+
+    [Header("Player Shadow Settings")]
     public GameObject PlayerObject;
     public GameObject playerShadow;
     public Vector3 shadowAnchor;
@@ -34,6 +40,7 @@ public class PlayerAction : MonoBehaviour
     private void Awake()
     {
         nowSpeed = normalSpeed;
+        nowHp = maxHp;
 
         rigid = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
@@ -123,6 +130,7 @@ public class PlayerAction : MonoBehaviour
     public void Reload()
     {
         curShotDelay += Time.deltaTime;
+        curMissDelay += Time.deltaTime;
     }
 
     public void ShiftInputs()
@@ -137,7 +145,10 @@ public class PlayerAction : MonoBehaviour
 
     public void Missile()
     {
-        Debug.Log("MISSILE");
+        if (curMissDelay < MaxMissDelay) return;
+        curMissDelay = 0;
+
+        GameManager.instance.pool.PlayerBulletsGet(1);
     }
 
     public void Shot(bool onShot)
@@ -145,7 +156,6 @@ public class PlayerAction : MonoBehaviour
         if (curShotDelay < MaxShotDelay) return;
         curShotDelay = 0;
 
-        Debug.Log("shots : " + onShot);
         if(onShot) GameManager.instance.pool.PlayerBulletsGet(0); 
     }
 }

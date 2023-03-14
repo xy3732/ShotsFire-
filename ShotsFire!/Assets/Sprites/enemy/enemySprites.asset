@@ -19,12 +19,14 @@ MonoBehaviour:
   m_DefaultPivot: 0
   m_DefaultCustomPivot: {x: 0.5, y: 0.5}
   m_Sprites:
-  - source: {fileID: 21300000, guid: 7f27e26dae8c4cf4f8dadbe7eccc895d, type: 3}
-    targetSprite: {fileID: 8596640243658272642, guid: f85082d699a86834a9e63cf77d1522bd, type: 3}
-  - source: {fileID: 21300000, guid: 1554d59aef6d4c645acd1f6cbc5138b0, type: 3}
-    targetSprite: {fileID: -7642239419928554605, guid: f85082d699a86834a9e63cf77d1522bd, type: 3}
-  - source: {fileID: 21300000, guid: ecedfc634f017b947ac03083f96e6f42, type: 3}
-    targetSprite: {fileID: -3876759189950653258, guid: f85082d699a86834a9e63cf77d1522bd, type: 3}
-  - source: {fileID: 21300000, guid: 63ce9196b1e69b64abff8ffae727b22f, type: 3}
+  - source: {fileID: 21300000, guid: 80a13edfe2aaa6c4a860eacf520a5837, type: 3}
     targetSprite: {fileID: -5720429097031363069, guid: f85082d699a86834a9e63cf77d1522bd, type: 3}
+  - source: {fileID: 21300000, guid: f38f644a2b27a344db79a4fd9d493eff, type: 3}
+    targetSprite: {fileID: 8596640243658272642, guid: f85082d699a86834a9e63cf77d1522bd, type: 3}
+  - source: {fileID: 21300000, guid: cd8eea1a17ebfa14dbe1237e7ead7414, type: 3}
+    targetSprite: {fileID: -7642239419928554605, guid: f85082d699a86834a9e63cf77d1522bd, type: 3}
+  - source: {fileID: 21300000, guid: 1541794938d7ecc41b56a4dfb4ca298a, type: 3}
+    targetSprite: {fileID: -3876759189950653258, guid: f85082d699a86834a9e63cf77d1522bd, type: 3}
+  - source: {fileID: 21300000, guid: 60753f8ab9534d04ca60903f8479c143, type: 3}
+    targetSprite: {fileID: -1625050996484606647, guid: f85082d699a86834a9e63cf77d1522bd, type: 3}
   m_PendingActions: []

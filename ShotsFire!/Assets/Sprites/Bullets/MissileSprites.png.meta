@@ -1,28 +1,25 @@
 fileFormatVersion: 2
-guid: f85082d699a86834a9e63cf77d1522bd
+guid: cb5eba9d2127de846a65539149868b91
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8596640243658272642
-    second: Enemy_0
+      213: -1100684260436019184
+    second: MissileBullet_0
   - first:
-      213: -7642239419928554605
-    second: Enemy_1
+      213: 7977448915490563712
+    second: MissileBullet_1
   - first:
-      213: -3876759189950653258
-    second: Enemy_2
+      213: -2606044736030007804
+    second: MissileBullet_2
   - first:
-      213: -5720429097031363069
-    second: Enemy_3
+      213: -186567343297050937
+    second: MissileBullet_3
   - first:
-      213: 4385501425044414559
-    second: Bullet_1
+      213: 3500680291411888395
+    second: EnemyBullet_0
   - first:
-      213: 2208703988740019828
-    second: Bullet_0
-  - first:
-      213: -1625050996484606647
-    second: Orange_EnemyShadow_C
+      213: 2646129415915671986
+    second: MissileBullet_shadow
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -160,13 +157,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Enemy_3
+      name: MissileBullet_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 24
-        height: 24
+        width: 5
+        height: 15
       alignment: 9
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -174,41 +171,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 30613ac5b04fc90b0800000000000000
-      internalID: -5720429097031363069
+      spriteID: 018f8de2f7599b0f0800000000000000
+      internalID: -1100684260436019184
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_0
+      name: MissileBullet_1
       rect:
         serializedVersion: 2
-        x: 0
-        y: 25
-        width: 24
-        height: 24
-      alignment: 9
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 28f241131c66d4770800000000000000
-      internalID: 8596640243658272642
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Enemy_1
-      rect:
-        serializedVersion: 2
-        x: 25
+        x: 6
         y: 0
-        width: 24
-        height: 24
+        width: 5
+        height: 15
       alignment: 9
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -216,41 +192,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 393dba6ecbf41f590800000000000000
-      internalID: -7642239419928554605
+      spriteID: 086e3a5b58795be60800000000000000
+      internalID: 7977448915490563712
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_2
+      name: MissileBullet_2
       rect:
         serializedVersion: 2
-        x: 25
-        y: 25
-        width: 24
-        height: 24
-      alignment: 9
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 6bc92438e0cf23ac0800000000000000
-      internalID: -3876759189950653258
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Orange_EnemyShadow_C
-      rect:
-        serializedVersion: 2
-        x: 50
+        x: 12
         y: 0
-        width: 24
-        height: 24
+        width: 5
+        height: 15
       alignment: 9
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -258,8 +213,50 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 945f3a48ab8a279e0800000000000000
-      internalID: -1625050996484606647
+      spriteID: 40e9728be1875dbd0800000000000000
+      internalID: -2606044736030007804
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MissileBullet_3
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 0
+        width: 5
+        height: 15
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7c647106dfd296df0800000000000000
+      internalID: -186567343297050937
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MissileBullet_shadow
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 0
+        width: 5
+        height: 11
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2b19d591fa0f8b420800000000000000
+      internalID: 2646129415915671986
       vertices: []
       indices: 
       edges: []
