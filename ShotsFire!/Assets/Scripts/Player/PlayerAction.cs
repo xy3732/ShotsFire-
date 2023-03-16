@@ -26,6 +26,7 @@ public class PlayerAction : MonoBehaviour
 
 
     [Header("Player Shadow Settings")]
+    public GameObject playerAll;
     public GameObject PlayerObject;
     public GameObject playerShadow;
     public Vector3 shadowAnchor;
@@ -157,5 +158,20 @@ public class PlayerAction : MonoBehaviour
         curShotDelay = 0;
 
         if(onShot) GameManager.instance.pool.PlayerBulletsGet(0); 
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        WeaponsSettings hit;
+        if(other.gameObject.CompareTag("enemyBullets"))
+        {
+            hit = other.gameObject.GetComponent<DefaultBullets>().settings;
+
+            hit.PenertrateAble -= 1;
+            nowHp -= hit.damage;
+
+            if (hit.PenertrateAble <= 0) other.gameObject.SetActive(false);
+            if (nowHp <= 0) playerAll.SetActive(false);
+        }
     }
 }
