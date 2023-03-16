@@ -6,12 +6,18 @@ public class EnemyFlight : MonoBehaviour
 {
     [Header("Settings")]
     public GameObject objects;
+    public sight2D sight;
+    [Space(10)]
     public float normalSpeed;
     public float rotateSpeed;
     [Space(10)]
     [SerializeField]
     private int maxHp;
     private int nowHp;
+
+    [Header("Bullet Settings")]
+    public float MaxShotDelay;
+    private float curShotDelay;
 
     [Header("Enemy Shadow Settings")]
     public GameObject shadow;
@@ -27,9 +33,18 @@ public class EnemyFlight : MonoBehaviour
         Init();
     }
 
+    private void Update()
+    {
+        Reload();
+        if (targetInSight())
+        {
+            Shot(targetInSight());
+        }
+    }
+
     private void FixedUpdate()
     {
-        Chase();
+        Move();
     }
 
     void Init()
@@ -38,6 +53,7 @@ public class EnemyFlight : MonoBehaviour
 
         rigid = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        sight = GetComponent<sight2D>();
 
         this.transform.position = objects.transform.position;
         this.transform.rotation = objects.transform.rotation;
@@ -52,7 +68,7 @@ public class EnemyFlight : MonoBehaviour
         shadow.transform.rotation = this.transform.rotation;
     }
 
-    private void Chase()
+    private void Move()
     {
         // 현재 타겟과의 direction 찾기
         Vector2 dir = (Vector2)target.position - rigid.position;
@@ -65,10 +81,38 @@ public class EnemyFlight : MonoBehaviour
         flightShadow();
     }
 
+    private bool targetInSight()
+    {
+        sight.FindViewTargets();
+
+        foreach (var hit in sight.hitedTargetContainer)
+        {
+            if (hit != null)
+            {
+                return true;
+            }
+        }
+            return false;
+    }
+
+    private void Reload()
+    {
+        curShotDelay += Time.deltaTime;
+    }
+
     private void destroys()
     {
         this.objects.SetActive(false);
     }
+
+    private void Shot(bool onShot)
+    {
+        if (curShotDelay < MaxShotDelay) return;
+        curShotDelay = 0;
+
+        if (onShot) GameManager.instance.pool.EnemyBulletGet(0, this.transform);
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         WeaponsSettings hit;
