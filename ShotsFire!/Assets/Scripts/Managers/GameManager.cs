@@ -50,10 +50,6 @@ public class GameManager : MonoBehaviour
         if (min > temp) temp = min;
         else if (max < temp) temp = max;
         vcam_0.m_Lens.OrthographicSize = temp;
-
-
-
-        Debug.Log(vcam_0.m_Lens.OrthographicSize);
     }
 
 }

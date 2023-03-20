@@ -171,7 +171,12 @@ public class PlayerAction : MonoBehaviour
             nowHp -= hit.damage;
 
             if (hit.PenertrateAble <= 0) other.gameObject.SetActive(false);
-            if (nowHp <= 0) playerAll.SetActive(false);
+            if (nowHp <= 0)
+            {
+                CameraManager.Instance.ShakeCamera(2f, 0.75f);
+                GameManager.instance.pool.EffectGet(0, this.transform);
+                playerAll.SetActive(false);
+            }
         }
     }
 }

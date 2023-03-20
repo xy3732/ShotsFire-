@@ -19,6 +19,16 @@ MonoBehaviour:
   m_DefaultPivot: 0
   m_DefaultCustomPivot: {x: 0.5, y: 0.5}
   m_Sprites:
+  - source: {fileID: 21300000, guid: b1f3bc13df09eb240a346aae29a92312, type: 3}
+    targetSprite: {fileID: 6895495282096838205, guid: f85082d699a86834a9e63cf77d1522bd, type: 3}
+  - source: {fileID: 21300000, guid: 52afa9b987e74a747807caab2fcc43c3, type: 3}
+    targetSprite: {fileID: 7875412785990629474, guid: f85082d699a86834a9e63cf77d1522bd, type: 3}
+  - source: {fileID: 21300000, guid: 054fd2c8b3978d04ea76198296936a4f, type: 3}
+    targetSprite: {fileID: -8210059557235754342, guid: f85082d699a86834a9e63cf77d1522bd, type: 3}
+  - source: {fileID: 21300000, guid: 636aa4c331731a3489ed823ebdfd840f, type: 3}
+    targetSprite: {fileID: -7309582927498218927, guid: f85082d699a86834a9e63cf77d1522bd, type: 3}
+  - source: {fileID: 21300000, guid: 20edf30a2fd09af4c95962175286727d, type: 3}
+    targetSprite: {fileID: 726499538296539406, guid: f85082d699a86834a9e63cf77d1522bd, type: 3}
   - source: {fileID: 21300000, guid: 80a13edfe2aaa6c4a860eacf520a5837, type: 3}
     targetSprite: {fileID: -5720429097031363069, guid: f85082d699a86834a9e63cf77d1522bd, type: 3}
   - source: {fileID: 21300000, guid: f38f644a2b27a344db79a4fd9d493eff, type: 3}

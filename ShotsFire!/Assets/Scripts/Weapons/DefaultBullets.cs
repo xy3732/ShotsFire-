@@ -32,5 +32,6 @@ public class DefaultBullets : MonoBehaviour
     private void destroys()
     {
         gameObject.SetActive(false);
+        CancelInvoke("destroys");
     }
 }

@@ -11,33 +11,40 @@ public class ObjectPooling : MonoBehaviour
     // 프리펩 보관 함수
     public GameObject[] enemyPrefabs;
     public GameObject[] enemyBulletPrefabs;
-
     public GameObject[] playerBulletPrefabs;
+    public GameObject[] effectPrefabs;
 
     // 오브젝트 풀
     List<GameObject>[] enemyPools;
     List<GameObject>[] enemyBulletPools;
     List<GameObject>[] playerBulletPools;
+    List<GameObject>[] effectPools;
 
     private void Awake()
     {
         enemyPools = new List<GameObject>[enemyPrefabs.Length];
         enemyBulletPools = new List<GameObject>[enemyBulletPrefabs.Length];
         playerBulletPools = new List<GameObject>[playerBulletPrefabs.Length];
+        effectPools = new List<GameObject>[effectPrefabs.Length];
 
         for (int index = 0; index < enemyPools.Length; index++)
         {
             enemyPools[index] = new List<GameObject>();
         }
 
-        for(int index = 0; index < enemyBulletPools.Length; index++)
+        for (int index = 0; index < enemyBulletPools.Length; index++)
         {
             enemyBulletPools[index] = new List<GameObject>();
         }
 
-        for(int index = 0; index < playerBulletPools.Length; index++)
+        for (int index = 0; index < playerBulletPools.Length; index++)
         {
             playerBulletPools[index] = new List<GameObject>();
+        }
+
+        for (int index = 0; index < effectPools.Length; index++)
+        {
+            effectPools[index] = new List<GameObject>();
         }
     }
 
@@ -49,17 +56,17 @@ public class ObjectPooling : MonoBehaviour
         foreach (var item in enemyPools[index])
         {
             // 비활성화된 오브젝트가 있으면 select 변수에 할당
-            if(!item.activeSelf)
+            if (!item.activeSelf)
             {
                 select = item;
                 // 활성화
                 select.SetActive(true);
                 break;
-            }   
+            }
         }
 
         // 선택된게 없으면 생성
-        if(!select)
+        if (!select)
         {
             select = Instantiate(enemyPrefabs[index], transform);
             // 리스트에 추가
@@ -69,6 +76,33 @@ public class ObjectPooling : MonoBehaviour
         // 선택 반환
         return select;
     }
+
+    public GameObject EffectGet(int index, Transform transform)
+    {
+        GameObject select = null;
+
+        foreach (var item in effectPools[index])
+        {
+            if (!item.activeSelf)
+            {
+                select = item;
+                select.transform.position = transform.position;
+
+                select.SetActive(true);
+                break;
+            }
+        }
+
+        if (!select)
+        {
+            {
+                select = Instantiate(effectPrefabs[index], transform.position, transform.rotation);
+                effectPools[index].Add(select);
+            }
+        }
+
+        return select;
+    } 
 
     public GameObject EnemyBulletGet(int index, Transform transform)
     {
