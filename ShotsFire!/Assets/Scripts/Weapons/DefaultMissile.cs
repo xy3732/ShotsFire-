@@ -15,6 +15,9 @@ public class DefaultMissile : MonoBehaviour
     public GameObject thisMissile;
     public GameObject missileShadow;
     public Vector3 ShadowAnchor;
+    [Space(10)]
+    public ParticleSystem smoke;
+    public GameObject smokeObject;
 
     private void OnEnable()
     {
@@ -22,6 +25,7 @@ public class DefaultMissile : MonoBehaviour
 
         Invoke("destroys", settings.lifeTime);
         target = NearEnemyFinder("enemy");
+        Debug.Log(target);
     }
 
     private void FixedUpdate()
@@ -31,6 +35,8 @@ public class DefaultMissile : MonoBehaviour
 
     private void Init()
     {
+        Onable();
+
         settings = new WeaponsSettings();
         settings.rigid = GetComponent<Rigidbody2D>();
 
@@ -74,6 +80,8 @@ public class DefaultMissile : MonoBehaviour
 
     private void MissileShadow()
     {
+        smokeObject.transform.position = gameObject.transform.position;
+
         missileShadow.transform.position = this.gameObject.transform.position + ShadowAnchor;
         missileShadow.transform.rotation = this.gameObject.transform.rotation;
     }
@@ -93,7 +101,7 @@ public class DefaultMissile : MonoBehaviour
         {
             float targetDistance = Vector3.Distance(transform.position, target.transform.position);
 
-            if (!(targetDistance < minTargetDistance)) continue;
+            if (!(targetDistance < minTargetDistance) && target.active == true) continue;
 
             minTargetDistance = targetDistance;
             result = target.transform.gameObject;
@@ -103,8 +111,43 @@ public class DefaultMissile : MonoBehaviour
         return result?.transform;
     }
 
-    private void destroys()
+    public void Onable()
+    {
+        SpriteRenderer SpriteTemp;
+        SpriteTemp = GetComponent<SpriteRenderer>();
+        SpriteTemp.enabled = true;
+
+        Collider2D colliderTemp;
+        colliderTemp = GetComponent<Collider2D>();
+        colliderTemp.enabled = true;
+
+        smoke.Play();
+
+        missileShadow.SetActive(true);
+    }
+
+    public void destroys()
+    {
+        SpriteRenderer SpriteTemp;
+        SpriteTemp = GetComponent<SpriteRenderer>();
+        SpriteTemp.enabled = false;
+
+        Collider2D colliderTemp;
+        colliderTemp = GetComponent<Collider2D>();
+        colliderTemp.enabled = false;
+
+        smoke.Stop();
+
+        missileShadow.SetActive(false);
+
+        CancelInvoke("destroys");
+        Invoke("destroyObject",1f);
+    }
+
+    private void destroyObject()
     {
         thisMissile.SetActive(false);
+
+        CancelInvoke("destroyObject");
     }
 }

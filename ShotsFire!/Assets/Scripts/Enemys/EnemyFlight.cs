@@ -14,6 +14,9 @@ public class EnemyFlight : MonoBehaviour
     [SerializeField]
     private int maxHp;
     private int nowHp;
+    [Space(10)]
+    public ParticleSystem smoke;
+    public GameObject smokeObject;
 
     [Header("Bullet Settings")]
     public float MaxShotDelay;
@@ -58,12 +61,16 @@ public class EnemyFlight : MonoBehaviour
         this.transform.position = objects.transform.position;
         this.transform.rotation = objects.transform.rotation;
 
+        smoke.Play();
+
         player = GameObject.Find("Player");
         target = player.transform;
     }
 
     private void flightShadow()
     {
+        smokeObject.transform.position = this.gameObject.transform.position;
+
         shadow.transform.position = this.gameObject.transform.position + shadowAnchor;
         shadow.transform.rotation = this.transform.rotation;
     }
@@ -103,6 +110,9 @@ public class EnemyFlight : MonoBehaviour
     private void destroys()
     {
         this.objects.SetActive(false);
+        CameraManager.Instance.ShakeCamera(2f, 0.75f);
+        GameManager.instance.pool.EffectGet(0, this.transform);
+        smoke.Stop();
     }
 
     private void Shot(bool onShot)
@@ -134,7 +144,7 @@ public class EnemyFlight : MonoBehaviour
 
             nowHp -= hit.damage;
 
-            otherObject.thisMissile.SetActive(false);
+            otherObject.destroys();
 
             if (nowHp <= 0) destroys();
         }
