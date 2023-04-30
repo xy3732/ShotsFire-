@@ -6,6 +6,8 @@ public class DefaultBullets : MonoBehaviour
 {
     [HideInInspector]
     public WeaponsSettings settings;
+    public ItemDataSO setting;
+
     private void OnEnable()
     {
         Init();
@@ -20,9 +22,18 @@ public class DefaultBullets : MonoBehaviour
         settings.rigid = GetComponent<Rigidbody2D>();
 
         settings.speed = 15f;
-        settings.damage = 1;
         settings.lifeTime = 2f;
+        settings.damage = (int)setting.nowDamage;
+
+        //enemy 에도 설정값 만들어주기
+
+        Debug.Log(settings.damage);
     }  
+
+   public void Get(float damage)
+    {
+        settings.damage = Mathf.RoundToInt(damage);
+    }
 
     private void Move()
     {

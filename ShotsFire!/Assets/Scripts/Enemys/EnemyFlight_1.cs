@@ -118,7 +118,7 @@ public class EnemyFlight_1 : MonoBehaviour
     {
         this.objects.SetActive(false);
         CameraManager.Instance.ShakeCamera(2f, 0.75f);
-        GameManager.instance.pool.EffectGet(0, this.transform);
+        GameManager.instance.pool.EffectGet(0, this.transform.position);
         smoke.Stop();
     }
 

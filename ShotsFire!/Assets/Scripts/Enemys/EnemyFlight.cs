@@ -6,7 +6,7 @@ public class EnemyFlight : MonoBehaviour
 {
     [Header("Settings")]
     public GameObject objects;
-    public sight2D sight;
+    sight2D sight;
     [Space(10)]
     public float normalSpeed;
     public float rotateSpeed;
@@ -14,6 +14,7 @@ public class EnemyFlight : MonoBehaviour
     [SerializeField]
     private int maxHp;
     private int nowHp;
+    [SerializeField]private int exp;
     [Space(10)]
     public ParticleSystem smoke;
     public GameObject smokeObject;
@@ -26,14 +27,33 @@ public class EnemyFlight : MonoBehaviour
     public GameObject shadow;
     public Vector3 shadowAnchor;
 
-    private GameObject player;
+    GameObject player;
     Transform target;
     private Rigidbody2D rigid;
     private Animator animator;
 
     private void OnEnable()
     {
-        Init();
+        nowHp = maxHp;
+
+        rigid = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
+        sight = GetComponent<sight2D>();
+
+        this.transform.position = objects.transform.position;
+        this.transform.rotation = objects.transform.rotation;
+
+        smoke.Play();
+
+        player = GameObject.FindGameObjectWithTag("Player");
+        target = player.transform;
+    }
+
+    public void Init(SpawnDataSO data)
+    {
+        maxHp = data.health;
+        nowHp = data.health;
+        normalSpeed = data.speed;
     }
 
     private void Update()
@@ -50,22 +70,6 @@ public class EnemyFlight : MonoBehaviour
         Move();
     }
 
-    void Init()
-    {
-        nowHp = maxHp;
-
-        rigid = GetComponent<Rigidbody2D>();
-        animator = GetComponent<Animator>();
-        sight = GetComponent<sight2D>();
-
-        this.transform.position = objects.transform.position;
-        this.transform.rotation = objects.transform.rotation;
-
-        smoke.Play();
-
-        player = GameObject.Find("Player");
-        target = player.transform;
-    }
 
     private void flightShadow()
     {
@@ -94,6 +98,7 @@ public class EnemyFlight : MonoBehaviour
 
         foreach (var hit in sight.hitedTargetContainer)
         {
+
             if (hit != null)
             {
                 return true;
@@ -109,9 +114,11 @@ public class EnemyFlight : MonoBehaviour
 
     private void destroys()
     {
+        GameManager.instance.pool.EffectGet(0, this.transform.position);
         this.objects.SetActive(false);
         CameraManager.Instance.ShakeCamera(2f, 0.75f);
-        GameManager.instance.pool.EffectGet(0, this.transform);
+        PlayerAction.instance.addExp(exp);
+        PlayerUiController.instance.ExoBarUpdate();
         smoke.Stop();
     }
 

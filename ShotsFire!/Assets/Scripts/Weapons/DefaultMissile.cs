@@ -4,11 +4,10 @@ using UnityEngine;
 
 public class DefaultMissile : MonoBehaviour
 {
-    [HideInInspector]
     public WeaponsSettings settings;
 
     [Header("Settings")]
-    private Transform target;
+    public Transform target;
     public float rotateSpeed;
 
     [Header(" Missile Shadow Settings")]
@@ -24,8 +23,8 @@ public class DefaultMissile : MonoBehaviour
         Init();
 
         Invoke("destroys", settings.lifeTime);
-        target = NearEnemyFinder("enemy");
-        Debug.Log(target);
+        target = Player.instance.target;
+        //target = NearEnemyFinder("enemy");
     }
 
     private void FixedUpdate()
@@ -86,31 +85,6 @@ public class DefaultMissile : MonoBehaviour
         missileShadow.transform.rotation = this.gameObject.transform.rotation;
     }
 
-    // 타겟 파인더
-    private Transform NearEnemyFinder(string targetName)
-    {
-        // 타겟 오브젝트들의 테그.
-        var targets = GameObject.FindGameObjectsWithTag(targetName);
-        // 지금 단 한개만 있으면 그 타겟을 지정
-        if (targets.Length == 1) return targets[0].transform;
-
-        // 그렇지 않으면 제일 가까운 타겟으로 설정
-        GameObject result = null;
-        var minTargetDistance = float.MaxValue;
-        foreach (var target in targets)
-        {
-            float targetDistance = Vector3.Distance(transform.position, target.transform.position);
-
-            if (!(targetDistance < minTargetDistance) && target.active == true) continue;
-
-            minTargetDistance = targetDistance;
-            result = target.transform.gameObject;
-        }
-
-        // 값 반환
-        return result?.transform;
-    }
-
     public void Onable()
     {
         SpriteRenderer SpriteTemp;
@@ -139,6 +113,9 @@ public class DefaultMissile : MonoBehaviour
         smoke.Stop();
 
         missileShadow.SetActive(false);
+
+        CameraManager.Instance.ShakeCamera(1f, 0.75f);
+        GameManager.instance.pool.EffectGet(1, this.transform.position);
 
         CancelInvoke("destroys");
         Invoke("destroyObject",1f);
