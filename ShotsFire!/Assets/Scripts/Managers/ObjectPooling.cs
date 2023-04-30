@@ -77,7 +77,7 @@ public class ObjectPooling : MonoBehaviour
         return select;
     }
 
-    public GameObject EffectGet(int index, Transform transform)
+    public GameObject EffectGet(int index, Vector3 pos)
     {
         GameObject select = null;
 
@@ -86,8 +86,7 @@ public class ObjectPooling : MonoBehaviour
             if (!item.activeSelf)
             {
                 select = item;
-                select.transform.position = transform.position;
-
+                select.transform.position = pos;
                 select.SetActive(true);
                 break;
             }
@@ -96,7 +95,7 @@ public class ObjectPooling : MonoBehaviour
         if (!select)
         {
             {
-                select = Instantiate(effectPrefabs[index], transform.position, transform.rotation);
+                select = Instantiate(effectPrefabs[index], pos, transform.rotation);
                 effectPools[index].Add(select);
             }
         }
@@ -136,19 +135,19 @@ public class ObjectPooling : MonoBehaviour
     }
 
 
-    public GameObject PlayerBulletsGet(int index)
+    public GameObject PlayerBulletsGet(ItemDataSO weapon)
     {
         GameObject select = null;
 
-        foreach (var item in playerBulletPools[index])
+        foreach (var item in playerBulletPools[weapon.prefabID])
         {
+
             // 비활성화된 오브젝트가 있으면 select 변수에 할당
-            if(!item.activeSelf)
+            if (!item.activeSelf)
             {
                 select = item;
                 select.transform.position = player.transform.position;
                 select.transform.rotation = player.transform.rotation;
-                // 활성화
                 select.SetActive(true);
 
                 break;
@@ -158,10 +157,9 @@ public class ObjectPooling : MonoBehaviour
         if(!select)
         {
             // 오브젝트 생성
-            select = Instantiate(playerBulletPrefabs[index], player.transform.position, player.transform.rotation);
-
+            select = Instantiate(playerBulletPrefabs[weapon.prefabID], player.transform.position, player.transform.rotation);
             // 리스트에 추가
-            playerBulletPools[index].Add(select);
+            playerBulletPools[weapon.prefabID].Add(select);
         }
 
         return select;

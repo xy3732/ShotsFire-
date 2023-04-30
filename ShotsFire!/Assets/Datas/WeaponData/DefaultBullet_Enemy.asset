@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 575a5e939675bf14f9ca40ab2a055137, type: 3}
+  m_Name: DefaultBullet_Enemy
+  m_EditorClassIdentifier: 
+  itemType: 0
+  itemID: 0
+  itemName: Default Bullet
+  itemDesc: 
+  itemIcon: {fileID: 2208703988740019828, guid: 0195f406f57b35e429409ccc8859e6d2, type: 3}
+  maxShotDelay: 0.1
+  maxClipDelay: 5
+  maxClip: 50
+  baseDamage: 1
+  baseCount: 1
+  damages:
+  - 1
+  - 1.5
+  - 2
+  - 3
+  - 5
+  count: 0000000000000000000000000000000000000000
+  prefabID: 0
+  projectile: {fileID: 2017255636674457028, guid: 676dc6b8c76346743bc7478d006571c2, type: 3}
+  nowDamage: 1

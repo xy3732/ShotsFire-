@@ -130,6 +130,7 @@ GameObject:
   - component: {fileID: 4219517887966713743}
   - component: {fileID: 8680375916150830522}
   - component: {fileID: 8680375916150830520}
+  - component: {fileID: 6534907686667498333}
   m_Layer: 7
   m_Name: EnemyPrefab
   m_TagString: enemy
@@ -280,7 +281,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19330a45d4d9cc0408778259ea379d77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_bDebugMode: 1
+  m_bDebugMode: 0
   m_horizontalViewAngle: 70
   m_viewRadius: 8
   m_viewRotateZ: 0
@@ -304,15 +305,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objects: {fileID: 3915005126213628305}
-  sight: {fileID: 0}
   normalSpeed: 7
   rotateSpeed: 50
   maxHp: 5
+  exp: 75
   smoke: {fileID: 8819871926906711444}
   smokeObject: {fileID: 3444399860910026031}
-  MaxShotDelay: 0.2
+  MaxShotDelay: 0.5
   shadow: {fileID: 3915005124966774371}
   shadowAnchor: {x: 0.3, y: -0.4, z: 0}
+  player: {fileID: 0}
+--- !u!114 &6534907686667498333
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8680375916150830521}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eedc28719092ee741bd89b6e0ac96ff7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ParentObject: {fileID: 3915005126213628305}
 --- !u!1001 &2485166267012430106
 PrefabInstance:
   m_ObjectHideFlags: 0

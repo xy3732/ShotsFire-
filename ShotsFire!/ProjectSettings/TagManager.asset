@@ -8,6 +8,8 @@ TagManager:
   - playerBullets
   - playerMissiles
   - enemyBullets
+  - Ground
+  - Area
   layers:
   - Default
   - TransparentFX

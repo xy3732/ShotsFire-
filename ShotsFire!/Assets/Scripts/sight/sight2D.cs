@@ -9,14 +9,14 @@ public class sight2D : MonoBehaviour
     [Header("View Config")]
     [Range(0f, 360f)]
     [SerializeField] private float m_horizontalViewAngle = 0f; // 시야각
-    [SerializeField] private float m_viewRadius = 1f; // 시야 범위
+    public float m_viewRadius = 1f; // 시야 범위
     [Range(-180f, 180f)]
     [SerializeField] private float m_viewRotateZ = 0f; // 시야각의 회전값
 
     [SerializeField] private LayerMask m_viewTargetMask;       // 인식 가능한 타켓의 마스크
     [SerializeField] private LayerMask m_viewObstacleMask;     // 인식 방해물의 마스크 
 
-    [HideInInspector]
+    //[HideInInspector]
     public List<Collider2D> hitedTargetContainer = new List<Collider2D>(); // 인식한 물체들을 보관할 컨테이너
 
     private float m_horizontalViewHalfAngle = 0f; // 시야각의 절반 값

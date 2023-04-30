@@ -7,7 +7,7 @@ using System;
 public class PlayerInputs : MonoBehaviour
 {
     // 부스트 작동
-    public Action MissileFire ,FlareFire, DownShift, UpShift;
+    public Action LockTarget, MissileFire ,FlareFire, DownShift, UpShift, ReroadBullets;
 
     public bool ShotsFire { get; private set; }
     public bool OnBoost { get; private set; }
@@ -46,7 +46,11 @@ public class PlayerInputs : MonoBehaviour
     private void Weapons()
     {
         GetMouseInput();
-        GetSpaceInput();
+        GetReladBulletInput();
+
+        GetSpaceDownInput();
+        GetSpaceUpInput();
+
         GetFlareInput();
     }
 
@@ -75,8 +79,19 @@ public class PlayerInputs : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.F)) FlareFire?.Invoke();
     }
 
-    private void GetSpaceInput()
+    private void GetSpaceDownInput()
     {
-        if (Input.GetKeyDown(KeyCode.Space)) MissileFire?.Invoke();
+        if (Input.GetKey(KeyCode.Space)) LockTarget?.Invoke();
+    }
+
+    private void GetSpaceUpInput()
+    {
+        //if (Input.GetKeyDown(KeyCode.Space)) MissileFire?.Invoke();
+        if (Input.GetKeyUp(KeyCode.Space)) MissileFire?.Invoke();
+    }
+
+    private void GetReladBulletInput()
+    {
+        if(Input.GetKeyDown(KeyCode.R)) ReroadBullets?.Invoke();
     }
 }

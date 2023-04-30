@@ -8,16 +8,21 @@ public class GameManager : MonoBehaviour
     // 오브젝트 풀링
     public static GameManager instance;
     public ObjectPooling pool;
+
     public Player player;
 
     [Header("VCAM Settings")]
     public CinemachineVirtualCamera vcam_0;
-    
 
     [Header("Mouse Settings")]
     // 마우스 커서 텍스쳐
     [SerializeField]
     private Texture2D cursorTexture;
+
+    [Header("Game Rule")]
+    public float maxGameTime;
+    public float RoundLevelDuration;
+    [HideInInspector] public float gameTime = 0;
 
     private void Awake()
     {
@@ -35,6 +40,10 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         scrollControll();
+
+        // Timer
+        gameTime += Time.deltaTime;
+        if (gameTime >= maxGameTime) gameTime = maxGameTime;
     }
 
     private void scrollControll()

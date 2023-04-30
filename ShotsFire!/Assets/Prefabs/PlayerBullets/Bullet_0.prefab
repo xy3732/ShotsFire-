@@ -144,3 +144,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85e215ccee7d1d24baace985729967c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  settings:
+    speed: 0
+    lifeTime: 0
+    damage: 0
+    PenertrateAble: 1
+    rigid: {fileID: 0}
+  setting: {fileID: 11400000, guid: 9756d6fd9d4d5d044bfda09a7fda2c17, type: 2}
